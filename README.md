@@ -1,1 +1,3 @@
-README
+# Configuration
+
+- Install docker.
