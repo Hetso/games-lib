@@ -1,3 +1,3 @@
 # Configuration
 
-- Install docker.
+- Install `docker` and run `docker compose up`.
