@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="demo.application.games.repository.game.GameMapper">
+
+    <resultMap id="gameResultMap" type="demo.application.games.model.GameEntity" >
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="interest" property="interest" typeHandler="demo.application.shared.repository.handler.InterestTypeHandler"/>
+        <result column="status" property="status" typeHandler="demo.application.games.repository.handler.GameStatusTypeHandler"/>
+        <collection property="tags" ofType="demo.application.games.model.GameTag" column="tag_id" javaType="ArrayList" notNullColumn="tag_id">
+            <id column="tag_id" property="id"/>
+            <result column="tag_name" property="name"/>
+        </collection>
+    </resultMap>
+
+    <sql id="gameAllFields">
+            games.id,
+            games.name,
+            games.interest,
+            games.status
+    </sql>
+    
+    <sql id="selectFullGame">
+        SELECT 
+            <include refid="gameAllFields" />,
+            NULL AS tag_id,
+            NULL AS tag_name 
+        FROM 
+            games
+    </sql>
+
+    <select id="findById" parameterType="long" resultMap="gameResultMap">
+        <include refid="selectFullGame" />
+        WHERE 
+            games.id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="gameResultMap">
+        <include refid="selectFullGame" />
+    </select>
+
+</mapper>
