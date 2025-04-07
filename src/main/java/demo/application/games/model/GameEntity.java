@@ -18,6 +18,14 @@ public class GameEntity {
         this.tags = new ArrayList<>();
     }
 
+    public GameEntity(long id, GameEntity entity) {
+        this.id = id;
+        this.name = entity.getName();
+        this.interest = entity.getInterest();
+        this.status = entity.getStatus();
+        this.tags = entity.getTags();
+    }
+
     public GameEntity(long id, String name, Interest interest, GameStatus status) {
         this.id = id;
         this.name = name;

@@ -4,15 +4,15 @@ import org.springframework.http.HttpStatus;
 
 import demo.application.shared.exception.CustomException;
 
-public class GameNotFoundException extends CustomException {
+public class InvalidGameFieldsException extends CustomException {
 
-    public GameNotFoundException(long id) {
-        super("Game ID " + id + " not found.");
+    public InvalidGameFieldsException(final String field) {
+        super("Invalid field " + field);
     }
 
     @Override
     public String getCode() {
-        return GameExceptionCode.GAME_NOT_FOUND.toString();
+        return GameExceptionCode.INVALID_GAME_FIELDS.toString();
     }
 
     @Override

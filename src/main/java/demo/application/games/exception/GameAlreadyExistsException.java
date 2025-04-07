@@ -4,15 +4,15 @@ import org.springframework.http.HttpStatus;
 
 import demo.application.shared.exception.CustomException;
 
-public class GameNotFoundException extends CustomException {
+public class GameAlreadyExistsException extends CustomException {
 
-    public GameNotFoundException(long id) {
-        super("Game ID " + id + " not found.");
+    public GameAlreadyExistsException(long id) {
+        super("Game already exists with id " + id);
     }
 
     @Override
     public String getCode() {
-        return GameExceptionCode.GAME_NOT_FOUND.toString();
+        return GameExceptionCode.GAME_ALREADY_EXISTS.toString();
     }
 
     @Override
